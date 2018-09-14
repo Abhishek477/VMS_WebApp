@@ -1,0 +1,28 @@
+{
+  "name": "newbostontutorial",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www",
+    "mail": "node ./public/nodemailer/sendGrid"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "jsdom": "^11.12.0",
+    "mongoose": "^5.2.14",
+    "morgan": "^1.9.1",
+    "nodemailer": "^4.6.8",
+    "pusher": "^2.1.3",
+    "request-ip": "^2.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}

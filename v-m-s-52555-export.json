@@ -1,0 +1,163 @@
+{
+  "Registration" : {
+    "YWJoaXNoZWsxODI5NkBnbWFpbC5jb20=" : {
+      "DLNo" : "DL220477",
+      "DOB" : "18/02/1996",
+      "Email" : "abhishek18296@gmail.com",
+      "FName" : "Kumar",
+      "Fine" : {
+        "y2018" : {
+          "APR" : [ null, {
+            "Amount" : 100,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "AUG" : [ null, {
+            "Amount" : 100,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "DEC" : [ null, {
+            "Amount" : 100,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "FEB" : [ null, {
+            "Amount" : 100,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "JAN" : [ null, {
+            "Amount" : 100,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "JUL" : [ null, {
+            "Amount" : 100,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "JUN" : [ null, {
+            "Amount" : 100,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "MAR" : [ null, {
+            "Amount" : 100,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "MAY" : [ null, {
+            "Amount" : 100,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "NOV" : [ null, {
+            "Amount" : 100,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "OCT" : [ null, {
+            "Amount" : 100,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "SEP" : [ null, {
+            "Amount" : 100,
+            "Category" : "Helmet",
+            "Place" : "Station",
+            "date" : "05-SEP"
+          } ]
+        }
+      },
+      "LName" : "Abhishek",
+      "MName" : "",
+      "Password" : "YWJjZGVm",
+      "VManu" : "Honda",
+      "VModel" : "PPro",
+      "VRNo" : "JH05E3230"
+    },
+    "cXc=" : {
+      "DLNo" : "qw",
+      "DOB" : "qw",
+      "Email" : "qw",
+      "FName" : "Qosmio",
+      "Fine" : {
+        "y2018" : {
+          "APR" : [ null, {
+            "Amount" : 0,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "AUG" : [ null, {
+            "Amount" : 1000,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "DEC" : [ null, {
+            "Amount" : 100,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "FEB" : [ null, {
+            "Amount" : 10,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "JAN" : [ null, {
+            "Amount" : 500,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "JUL" : [ null, {
+            "Amount" : 250,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "JUN" : [ null, {
+            "Amount" : 100,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "MAR" : [ null, {
+            "Amount" : 900,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "MAY" : [ null, {
+            "Amount" : 1500,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "NOV" : [ null, {
+            "Amount" : 100,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "OCT" : [ null, {
+            "Amount" : 700,
+            "Category" : "Helmet",
+            "Place" : "Station"
+          } ],
+          "SEP" : [ null, {
+            "Amount" : 500,
+            "Category" : "Signal break",
+            "Place" : "Kolkata-Delhi Expressway, West Bengal",
+            "date" : "05-SEP"
+          }, {
+            "Amount" : 100,
+            "Category" : "No-Parking",
+            "Place" : "Howrah Station",
+            "date" : "10-SEP"
+          } ]
+        }
+      },
+      "LName" : "qw",
+      "MName" : "qw",
+      "Password" : "cXc=",
+      "VManu" : "qw",
+      "VModel" : "qw",
+      "VRNo" : "qw"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+config
+public/nodemailer
+public/firebaseConfig.js
+sendgridKey.txt
+node_modules
+models
