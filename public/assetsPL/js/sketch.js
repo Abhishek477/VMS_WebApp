@@ -7,6 +7,11 @@ fetch();
 //abhishek18296@gmail.com
 
 function fetch(){
+    if (localStorage.getItem("objectToPass") === null) {
+        window.alert("Login to continue....");
+        window.location.href = '/login-page';
+    }
+
     var userId = localStorage['objectToPass'];
     // localStorage.removeItem( 'objectToPass' );
     var ref = db.ref("Registration/" + userId);
@@ -29,6 +34,8 @@ function gotOne(data){
     autoType(".type-js",200);
     if(document.getElementById("headLabel").innerText === "DASHBOARD")
         displayTable();
+    if(document.getElementById("headLabel").innerText === "HISTORY")
+        displayHistoryTable();
 }
 function errData(err){
     console.log(err);
@@ -59,11 +66,56 @@ function displayTable(){
 
 
 
+  function displayHistoryTable(){
+    var i,j,k;
+    var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    var keys,keys2,keys3,tableCnt = "";
+    var userId1 = localStorage['objectToPass'];
+
+    var refDB = db.ref("Registration/" + userId1 + "/Fine");
+    refDB.on("value", function(snapshot) {
+    var chartData = snapshot.val();
+    keys = Object.keys(chartData);
+    console.log(keys);
+    });
+    for(i = keys.length-1; i >= 0; i--){
+        refDB = db.ref("Registration/" + userId1 + "/Fine/" + keys[i]);
+        refDB.on("value", function(snapshot) {
+            var chartData = snapshot.val();
+            keys2 = Object.keys(chartData);
+            var lmt = 11;
+            if(keys[i] == "y2018")
+                lmt = 8;
+            else
+                lmt = 0;
+            for(j = lmt; j >= 0; j--){
+                var tt = 0;
+                while(tt < 12 && keys2[tt] != months[j]){tt++;}
+                refDB = db.ref("Registration/" + userId1 + "/Fine/" + keys[i] + "/" + keys2[tt]);
+                refDB.on("value", function(snapshot) {
+                    var chartData = snapshot.val();
+                    keys3 = Object.keys(chartData);
+                    for(k = keys3.length - 1; k >= 0; k--){
+                        refDB = db.ref("Registration/" + userId1 + "/Fine/" + keys[i] + "/" + keys2[tt] + "/" + keys3[k]);
+                        refDB.on("value", function(snapshot) {
+                            var chartData = snapshot.val();
+                            tableCnt += "<tr><td>" + keys3[k] + "</td><td>" + chartData.date + "-" + keys[i].substring(3) + "</td><td>" + chartData.Category + "</td><td>" + chartData.Place + "</td><td class='text-right'>&#8377 " + chartData.Amount + "</td></tr>";
+                        });
+                    }
+                });
+            }
+        });
+    }
+    document.getElementById("historyTable").innerHTML = tableCnt;
+    var ldr = document.getElementById('ldr').style = "visibility: hidden";
+  }
 
 
 
-
-
+function logoutStuff(){
+    localStorage.removeItem( 'objectToPass' );
+    window.location.href = '/index';
+}
 
 
 
