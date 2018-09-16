@@ -12,6 +12,7 @@ function dataStore(){
   var VManu     =  document.getElementById('VManu').value.trim();
   var VModel    =  document.getElementById('VModel').value.trim();
   var email     =  document.getElementById('email').value.trim();
+  var Phone     =  document.getElementById('Phone').value.trim();
   var password  =  document.getElementById('password').value.trim();
   var Cpassword  =  document.getElementById('Cpassword').value.trim();
   var hash      =  window.btoa(password);
@@ -39,6 +40,7 @@ function dataStore(){
     VManu     : VManu,
     VModel    : VModel,
     Email     : email,
+    Phone     : Phone,
     Password  : hash
   };
   var ref = db.ref("Registration/" + window.btoa(email));

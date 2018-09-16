@@ -61,3 +61,15 @@
   max-width: 530px;
   margin: 0 auto;
 }
+
+.inpStyle{
+  display: block;
+  width: 100%;
+  padding: 10px 18px 10px 18px;
+  background-color: transparent;
+  border: 1px solid #E3E3E3;
+  border-radius: 30px;
+  color: #2c2c2c;
+  line-height: normal;
+  font-size: 0.8571em;
+}

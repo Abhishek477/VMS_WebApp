@@ -13,6 +13,7 @@
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
   <!-- CSS Files -->
   <link href="../assetsPL/css/bootstrap.min.css" rel="stylesheet" />
@@ -103,7 +104,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" style="-webkit-user-select: none;" id="headLabel">User Profile</a>
+            <a class="navbar-brand" style="-webkit-user-select: none;" id="headLabel">Profile</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -163,69 +164,69 @@
           <div class="col-md-8">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">Edit Profile</h5>
+                <h5 class="title">View Profile</h5>
               </div>
               <div class="card-body">
                 <form>
                   <div class="row">
-                    <div class="col-md-5 pr-1">
-                      <div class="form-group">
-                        <label>Company (disabled)</label>
-                        <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
-                      </div>
-                    </div>
-                    <div class="col-md-3 px-1">
-                      <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" class="form-control" placeholder="Username" value="michael23">
-                      </div>
-                    </div>
-                    <div class="col-md-4 pl-1">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" placeholder="Email">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>First Name</label>
-                        <input type="text" class="form-control" placeholder="Company" value="Mike">
+                        <input type="text" class="inpStyle" id="FName" readonly>
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+                        <input type="text" class="inpStyle" id="LName" readonly>
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-7 pr-1">
                       <div class="form-group">
-                        <label>Address</label>
-                        <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                        <label>Driving Licence no.</label>
+                        <input id="formDLNo" type="text" class="inpStyle" readonly>
+                      </div>
+                    </div>
+                    <div class="col-md-5 pl-1">
+                      <div class="form-group">
+                        <label>Date-of-Birth</label>
+                        <input type="text" class="inpStyle" id="DOB" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-7 pr-1">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" id="Email" class="inpStyle" readonly>
+                      </div>
+                    </div>
+                    <div class="col-md-5 pl-1">
+                      <div class="form-group">
+                        <label>Mobile</label>
+                        <input type="text" id="Phone" class="inpStyle" readonly>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-4 pr-1">
                       <div class="form-group">
-                        <label>City</label>
-                        <input type="text" class="form-control" placeholder="City" value="Mike">
+                        <label>Vehicle Manufacturer</label>
+                        <input type="text" class="inpStyle" id="VManu" readonly>
                       </div>
                     </div>
                     <div class="col-md-4 px-1">
                       <div class="form-group">
-                        <label>Country</label>
-                        <input type="text" class="form-control" placeholder="Country" value="Andrew">
+                        <label>Vehicle Model</label>
+                        <input type="text" class="inpStyle" id="VModel" readonly>
                       </div>
                     </div>
-                    <div class="col-md-4 pl-1">
+                    <div class="col-md-4 pr-1">
                       <div class="form-group">
-                        <label>Postal Code</label>
-                        <input type="number" class="form-control" placeholder="ZIP Code">
+                        <label>Vehicle Reg. No</label>
+                        <input type="text" class="inpStyle" id="VRNo" readonly>
                       </div>
                     </div>
                   </div>
@@ -283,18 +284,23 @@
           <nav>
             <ul>
               <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
+                <a href="https://www.google.com">
+                  IIEST
                 </a>
               </li>
               <li>
-                <a href="http://presentation.creative-tim.com">
+                <a href="https://www.google.com">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
+                <a href="https://www.google.com">
+                  API
+                </a>
+              </li>
+              <li>
+                <a href="https://www.google.com">
+                  Licenses
                 </a>
               </li>
             </ul>
@@ -303,9 +309,7 @@
             &copy;
             <script>
               document.write(new Date().getFullYear())
-            </script>, Designed by
-            <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
-            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+            </script>, made with <i class="material-icons" style="font-size: 16px !important">favorite</i>
           </div>
         </div>
       </footer>
@@ -330,19 +334,6 @@
   <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assetsPL/demo/demo.js"></script>
   <script src="../assetsPL/js/sketch.js"></script>
-  <script>
-      $(document).ready(function() {
-      //Preloader
-      $(window).on("load", function() {
-      preloaderFadeOutTime = 500;
-      function hidePreloader() {
-      var preloader = $('.spinner-wrapper');
-      preloader.fadeOut(preloaderFadeOutTime);
-      }
-      hidePreloader();
-      });
-      });
-      </script>
 </body>
 
 </html>
