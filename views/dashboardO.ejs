@@ -6,20 +6,21 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assetsPL/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assetsPL/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="theme-color" content="#ffb236" />
+  <meta name="theme-color" content="#2ca8ff" />
   <title>
-    Now UI Dashboard by Creative Tim
+    Dashboard | V M S
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="../assetsPL/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../assetsPL/css/now-ui-dashboard.css?v=1.1.0" rel="stylesheet" />
+  <link href="../assets/css/material-kit.css?v=2.0.4" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="../assetsPL/demo/demo.css" rel="stylesheet" />
   <link href="../assetsPL/scss/typingText.scss" rel="stylesheet" />
   <link href="../assetsPL/css/preloader.css" rel="stylesheet" />
 </head>
@@ -27,66 +28,64 @@
 <body class="">
 
   <!-- CSS PreLoader -->
-  <div class="spinner-wrapper" id="ldr" style="background-color: #ffb236">
-      <div class="sk-cube-grid">
-        <div class="sk-cube sk-cube1"></div>
-        <div class="sk-cube sk-cube2"></div>
-        <div class="sk-cube sk-cube3"></div>
-        <div class="sk-cube sk-cube4"></div>
-        <div class="sk-cube sk-cube5"></div>
-        <div class="sk-cube sk-cube6"></div>
-        <div class="sk-cube sk-cube7"></div>
-        <div class="sk-cube sk-cube8"></div>
-        <div class="sk-cube sk-cube9"></div>
-      </div>
+  <div class="spinner-wrapper" id="ldr" style="background-color: #2ca8ff">
+    <div class="sk-cube-grid">
+      <div class="sk-cube sk-cube1"></div>
+      <div class="sk-cube sk-cube2"></div>
+      <div class="sk-cube sk-cube3"></div>
+      <div class="sk-cube sk-cube4"></div>
+      <div class="sk-cube sk-cube5"></div>
+      <div class="sk-cube sk-cube6"></div>
+      <div class="sk-cube sk-cube7"></div>
+      <div class="sk-cube sk-cube8"></div>
+      <div class="sk-cube sk-cube9"></div>
     </div>
-
-
+  </div>
 
 
   <div class="wrapper ">
-    <div class="sidebar" data-color="yellow">
+    <div class="sidebar" data-color="blue">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
-    <div class="logo">
+      <div class="logo">
         <a href="./user" class="simple-text logo-mini">
           <i class="now-ui-icons users_single-02"></i>
         </a>
         <div class="type-js headline">
-          <a id="userName" href="./user" class="text-js simple-text logo-normal" style="visibility: hidden">|</a>
+          <a id="userName" href="./user" class="text-js simple-text logo-normal"  style="visibility: hidden; font-family: Montserrat; font-size: 0.9142em; text-transform: uppercase; cursor: pointer; font-weight: 400;">|</a>
         </div>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li>
-            <a href="./dashboard">
+          <li class="active ">
+            <a onclick="location.reload()">
               <i class="now-ui-icons design_app"></i>
-              <p>Dashboard</p>
+              <p style="font-family: Montserrat; font-size: 0.9142em; text-transform: uppercase; cursor: pointer; font-weight: 400;">Dashboard</p>
             </a>
           </li>
           <li>
             <a href="./tables">
               <i class="now-ui-icons design_bullet-list-67"></i>
-              <p>History</p>
+              <p style="font-family: Montserrat; font-size: 0.9142em; text-transform: uppercase; cursor: pointer; font-weight: 400;">History</p>
             </a>
           </li>
           <li>
             <a href="./notifications">
               <i class="now-ui-icons ui-1_bell-53"></i>
-              <p>Notifications</p>
+              <p style="font-family: Montserrat; font-size: 0.9142em; text-transform: uppercase; cursor: pointer; font-weight: 400;">Notifications</p>
             </a>
           </li>
           <li>
             <a href="./map">
               <i class="now-ui-icons location_map-big"></i>
-              <p>Maps</p>
+              <p style="font-family: Montserrat; font-size: 0.9142em; text-transform: uppercase; cursor: pointer; font-weight: 400;">Maps</p>
             </a>
           </li>
-          <li class="active ">
+          <li>
             <a href="./user">
               <i class="now-ui-icons users_single-02"></i>
-              <p>User Profile</p>
+              <p style="font-family: Montserrat; font-size: 0.9142em; text-transform: uppercase; cursor: pointer; font-weight: 400;">User Profile</p>
             </a>
           </li>
         </ul>
@@ -104,7 +103,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" style="-webkit-user-select: none;" id="headLabel">Profile</a>
+            <a class="navbar-brand" style="-webkit-user-select: none;" id="headLabel">Dashboard</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -156,129 +155,95 @@
           </div>
         </div>
       </nav>
-      <!-- End Navbar -->
-      <div class="panel-header panel-header-sm">
-      </div>
+      <!-- End Navbar  -->
+      <div class="panel-header panel-header-sm"></div>
       <div class="content">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="title">View Profile</h5>
+        <div class="col-lg-12 col-md-10 ml-auto mr-auto">
+          <div class="card card-login">
+            <form class="form" method="" action="">
+              <div class="card-header card-header-primary text-center">
+                <h4 class="card-title">FINE TICKET</h4>
               </div>
+              <p class="description text-center">Fill in the details</p>
               <div class="card-body">
-                <form>
+                <div class="container">
                   <div class="row">
-                    <div class="col-md-6 pr-1">
-                      <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" class="inpStyle" id="FName" readonly>
+                    <div class="col-lg-4 col-sm-6 col-md-6 ml-auto mr-auto">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-textx">
+                            <i class="material-icons">face</i>
+                          </span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Driver's Name" id="FName">
                       </div>
                     </div>
-                    <div class="col-md-6 pl-1">
-                      <div class="form-group">
-                        <label>Last Name</label>
-                        <input type="text" class="inpStyle" id="LName" readonly>
+                    <div class="col-lg-4 col-sm-6 col-md-6 ml-auto mr-auto">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-textx">
+                            <i class="material-icons">airport_shuttle</i>
+                          </span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Vehicle Registration No." id="VRNo">
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-md-6 ml-auto mr-auto">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-textx">
+                            <i class="material-icons">credit_card</i>
+                          </span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Driver's Driving Licence No." id="DLNo">
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-7 pr-1">
-                      <div class="form-group">
-                        <label>Driving Licence no.</label>
-                        <input id="formDLNo" type="text" class="inpStyle" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-5 pl-1">
-                      <div class="form-group">
-                        <label>Date-of-Birth</label>
-                        <input type="text" class="inpStyle" id="DOB" readonly>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-7 pr-1">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" id="Email" class="inpStyle" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-5 pl-1">
-                      <div class="form-group">
-                        <label>Mobile</label>
-                        <input type="text" id="Phone" class="inpStyle" readonly>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4 pr-1">
-                      <div class="form-group">
-                        <label>Vehicle Manufacturer</label>
-                        <input type="text" class="inpStyle" id="VManu" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-4 px-1">
-                      <div class="form-group">
-                        <label>Vehicle Model</label>
-                        <input type="text" class="inpStyle" id="VModel" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-4 pr-1">
-                      <div class="form-group">
-                        <label>Vehicle Reg. No</label>
-                        <input type="text" class="inpStyle" id="VRNo" readonly>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>About Me</label>
-                        <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card card-user">
-              <div class="image">
-                <img src="../assetsPL/img/bg5.jpg" alt="...">
-              </div>
-              <div class="card-body">
-                <div class="author">
-                  <a href="#">
-                    <img class="avatar border-gray" src="../assetsPL/img/mike.jpg" alt="...">
-                    <h5 class="title">Mike Andrew</h5>
-                  </a>
-                  <p class="description">
-                    michael24
-                  </p>
                 </div>
-                <p class="description text-center">
-                  "Lamborghini Mercy
-                  <br> Your chick she so thirsty
-                  <br> I'm in that two seat Lambo"
-                </p>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-lg-4 col-sm-6 col-md-6 ml-auto mr-auto">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-textx">
+                            <i class="material-icons">attach_money</i>
+                          </span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Fine Amount" id="fineVal">
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-md-6 ml-auto mr-auto">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-textx">
+                            <i class="material-icons">description</i>
+                          </span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Fine Reason" id="fineReason">
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-md-6 ml-auto mr-auto">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-textx">
+                            <i class="material-icons">location_on</i>
+                          </span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Fine Location" id="fineLoc">
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <hr>
-              <div class="button-container">
-                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fab fa-facebook-f"></i>
-                </button>
-                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fab fa-twitter"></i>
-                </button>
-                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fab fa-google-plus-g"></i>
-                </button>
+              <div class="footer text-center">
+                <a onclick="anyFunction()" class="btn btn-danger" style="color: white">SUBMIT</a>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
+
+
       <footer class="footer">
         <div class="container-fluid">
           <nav>
@@ -318,6 +283,7 @@
   <!-- Firebase stuff -->
   <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
   <script src="./firebaseConfig.js"></script>
+  <script src="../assetsPL/js/sketch.js"></script>
   <!--   Core JS Files   -->
   <script src="../assetsPL/js/core/jquery.min.js"></script>
   <script src="../assetsPL/js/core/popper.min.js"></script>
@@ -333,7 +299,12 @@
   <script src="../assetsPL/js/now-ui-dashboard.min.js?v=1.1.0" type="text/javascript"></script>
   <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assetsPL/demo/demo.js"></script>
-  <script src="../assetsPL/js/sketch.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assetsPL/js/demos.js
+      demo.initDashboardPageCharts();
+    });
+  </script>
 </body>
 
 </html>

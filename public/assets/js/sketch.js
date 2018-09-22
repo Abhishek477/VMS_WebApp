@@ -16,6 +16,11 @@ function dataStore(){
   var password  =  document.getElementById('password').value.trim();
   var Cpassword  =  document.getElementById('Cpassword').value.trim();
   var hash      =  window.btoa(password);
+
+  if(document.getElementById("exampleRadios1").checked)
+    var accType = document.getElementById("exampleRadios1").value.trim();
+  else
+  var accType = document.getElementById("exampleRadios2").value.trim();
   //window.atob()
 
   if(email == "" || password == "" || Cpassword == "" || DLNo == ""){
@@ -41,7 +46,8 @@ function dataStore(){
     VModel    : VModel,
     Email     : email,
     Phone     : Phone,
-    Password  : hash
+    Password  : hash,
+    accType   : accType
   };
   var ref = db.ref("Registration/" + window.btoa(email));
   ref.set(user)
@@ -75,7 +81,10 @@ function getData(data){
       else{
         console.log("Login Successful!");
         localStorage.setItem( 'objectToPass', window.btoa(LoginEmail));
-        window.location.href='./dashboard';
+        if(userCredentials[keys[i]].accType == "driver")
+          window.location.href='./dashboardD';
+        else
+        window.location.href='./dashboardO';
       }
       tmp = 1;
     }

@@ -84,7 +84,7 @@ function displayTable(){
 
 
 
-  function displayHistoryTable(){
+function displayHistoryTable(){
     var i,j,k;
     var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
     var keys,keys2,keys3,tableCnt = "";
@@ -92,9 +92,9 @@ function displayTable(){
 
     var refDB = db.ref("Registration/" + userId1 + "/Fine");
     refDB.on("value", function(snapshot) {
-    var chartData = snapshot.val();
-    keys = Object.keys(chartData);
-    console.log(keys);
+        var chartData = snapshot.val();
+        keys = Object.keys(chartData);
+        console.log(keys);
     });
     for(i = keys.length-1; i >= 0; i--){
         refDB = db.ref("Registration/" + userId1 + "/Fine/" + keys[i]);
@@ -105,7 +105,7 @@ function displayTable(){
             if(keys[i] == "y2018")
                 lmt = 8;
             else
-                lmt = 0;
+                lmt = 0;                    //Remove this else when "y2017" has all months defined in Firebase
             for(j = lmt; j >= 0; j--){
                 var tt = 0;
                 while(tt < 12 && keys2[tt] != months[j]){tt++;}
@@ -127,13 +127,6 @@ function displayTable(){
     document.getElementById("historyTable").innerHTML = tableCnt;
     var preloader = $('.spinner-wrapper');
     preloader.fadeOut(500);
-  }
-
-
-
-function logoutStuff(){
-    localStorage.removeItem( 'objectToPass' );
-    window.location.href = '/index';
 }
 
 
@@ -149,25 +142,10 @@ function logoutStuff(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function logoutStuff(){
+    localStorage.removeItem( 'objectToPass' );
+    window.location.href = '/index';
+}
 
 
 
