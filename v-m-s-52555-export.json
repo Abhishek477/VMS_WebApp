@@ -8,136 +8,70 @@
       "Fine" : {
         "y2018" : {
           "APR" : [ null, {
-            "Amount" : 100,
-            "Category" : "Helmet",
-            "Place" : "Station"
-          } ],
-          "AUG" : [ null, {
-            "Amount" : 100,
-            "Category" : "Helmet",
-            "Place" : "Station"
-          } ],
-          "DEC" : [ null, {
-            "Amount" : 100,
-            "Category" : "Helmet",
-            "Place" : "Station"
-          } ],
-          "FEB" : [ null, {
-            "Amount" : 100,
-            "Category" : "Helmet",
-            "Place" : "Station"
-          } ],
-          "JAN" : [ null, {
-            "Amount" : 100,
-            "Category" : "Helmet",
-            "Place" : "Station"
-          } ],
-          "JUL" : [ null, {
-            "Amount" : 100,
-            "Category" : "Helmet",
-            "Place" : "Station"
-          } ],
-          "JUN" : [ null, {
-            "Amount" : 100,
-            "Category" : "Helmet",
-            "Place" : "Station"
-          } ],
-          "MAR" : [ null, {
-            "Amount" : 100,
-            "Category" : "Helmet",
-            "Place" : "Station"
-          } ],
-          "MAY" : [ null, {
-            "Amount" : 100,
-            "Category" : "Helmet",
-            "Place" : "Station"
-          } ],
-          "NOV" : [ null, {
-            "Amount" : 100,
-            "Category" : "Helmet",
-            "Place" : "Station"
-          } ],
-          "OCT" : [ null, {
-            "Amount" : 100,
-            "Category" : "Helmet",
-            "Place" : "Station"
-          } ],
-          "SEP" : [ null, {
-            "Amount" : 100,
-            "Category" : "Helmet",
-            "Place" : "Station",
-            "date" : "05-SEP"
-          } ]
-        }
-      },
-      "LName" : "Abhishek",
-      "MName" : "",
-      "Password" : "YWJjZGVm",
-      "VManu" : "Honda",
-      "VModel" : "PPro",
-      "VRNo" : "JH05E3230"
-    },
-    "cXc=" : {
-      "DLNo" : "qw",
-      "DOB" : "qw",
-      "Email" : "qw",
-      "FName" : "Qosmio",
-      "Fine" : {
-        "y2018" : {
-          "APR" : [ null, {
             "Amount" : 0,
             "Category" : "Helmet",
-            "Place" : "Station"
+            "Place" : "Station",
+            "date" : "01-APR"
           } ],
           "AUG" : [ null, {
             "Amount" : 1000,
             "Category" : "Helmet",
-            "Place" : "Station"
+            "Place" : "Station",
+            "date" : "15-AUG"
           } ],
           "DEC" : [ null, {
             "Amount" : 100,
             "Category" : "Helmet",
-            "Place" : "Station"
+            "Place" : "Station",
+            "date" : "09-DEC"
           } ],
           "FEB" : [ null, {
             "Amount" : 10,
             "Category" : "Helmet",
-            "Place" : "Station"
+            "Place" : "Station",
+            "date" : "18-FEB"
           } ],
           "JAN" : [ null, {
             "Amount" : 500,
             "Category" : "Helmet",
-            "Place" : "Station"
+            "Place" : "Station",
+            "date" : "12-JAN"
           } ],
           "JUL" : [ null, {
             "Amount" : 250,
             "Category" : "Helmet",
-            "Place" : "Station"
+            "Place" : "Station",
+            "date" : "10-JUL"
           } ],
           "JUN" : [ null, {
             "Amount" : 100,
             "Category" : "Helmet",
-            "Place" : "Station"
+            "Place" : "Station",
+            "date" : "01-JUN"
           } ],
           "MAR" : [ null, {
             "Amount" : 900,
             "Category" : "Helmet",
-            "Place" : "Station"
+            "Place" : "Station",
+            "date" : "14-MAR"
           } ],
           "MAY" : [ null, {
             "Amount" : 1500,
             "Category" : "Helmet",
-            "Place" : "Station"
+            "Place" : "Station",
+            "date" : "05-MAY"
           } ],
           "NOV" : [ null, {
             "Amount" : 100,
             "Category" : "Helmet",
-            "Place" : "Station"
+            "Place" : "Station",
+            "date" : "14-NOV"
           } ],
           "OCT" : [ null, {
             "Amount" : 700,
             "Category" : "Helmet",
-            "Place" : "Station"
+            "Place" : "Station",
+            "date" : "02-OCT"
           } ],
           "SEP" : [ null, {
             "Amount" : 500,
@@ -152,12 +86,26 @@
           } ]
         }
       },
+      "LName" : "Abhishek",
+      "MName" : "",
+      "Password" : "YWJjZGVm",
+      "VManu" : "Honda",
+      "VModel" : "PPro",
+      "VRNo" : "JH05E3230",
+      "accType" : "driver"
+    },
+    "cXc=" : {
+      "DLNo" : "qw",
+      "DOB" : "qw",
+      "Email" : "qw",
+      "FName" : "Qosmio",
       "LName" : "qw",
       "MName" : "qw",
       "Password" : "cXc=",
       "VManu" : "qw",
       "VModel" : "qw",
-      "VRNo" : "qw"
+      "VRNo" : "qw",
+      "accType" : "official"
     }
   }
 }

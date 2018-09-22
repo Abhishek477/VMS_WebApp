@@ -249,14 +249,14 @@ demo = {
 
     refDB.on("value", function(snapshot) {
       chartData = snapshot.val();
-      dataArr = fineSum();
-      console.log(dataArr);
 
       var preloader = $('.spinner-wrapper');
       preloader.fadeOut(500);
 
       var ctx = document.getElementById('bigDashboardChart');
       if(ctx){
+        dataArr = fineSum();
+        console.log(dataArr);
         ctx = ctx.getContext("2d");
 
         var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);

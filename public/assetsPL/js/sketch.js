@@ -1,6 +1,11 @@
 var db = firebase.database();
 
-var objectRec;
+var objectRec, userData;
+var usrID = localStorage['objectToPass'];
+refDB = db.ref("Registration/" + usrID + "/accType");
+refDB.on("value", function(snapshot) {
+    userData = snapshot.val();
+});
 fetch();
 
 
@@ -32,12 +37,15 @@ function gotOne(data){
     document.getElementById("userName").innerHTML = objectRec.FName + " " + objectRec.MName + " " + objectRec.LName;
     document.getElementById("userName").style.visibility = "visible";
     autoType(".type-js",200);
-    if(document.getElementById("headLabel").innerText === "DASHBOARD")
+    if(userData == "driver" && document.getElementById("headLabel").innerText === "DASHBOARD")
         displayTable();
     if(document.getElementById("headLabel").innerText === "HISTORY")
-        displayHistoryTable();
+        if(userData == "driver")
+            displayHistoryTableD();
+        else
+            displayHistoryTableO();
     if(document.getElementById("headLabel").innerText === "PROFILE")
-    displayUserForm();
+        displayUserForm();
 }
 function errData(err){
     console.log(err);
@@ -85,7 +93,7 @@ function displayTable(){
 
 
 
-function displayHistoryTable(){
+function displayHistoryTableD(){
     var i,j,k;
     var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
     var keys,keys2,keys3,tableCnt = "";
@@ -131,16 +139,19 @@ function displayHistoryTable(){
 }
 
 
+function displayHistoryTableO(){
+    console.log("Official's History displayed!");
+    var preloader = $('.spinner-wrapper');
+    preloader.fadeOut(500);
+}
+
+
+
 function gotoDashboard(){
-    var userId1 = localStorage['objectToPass'];
-    refDB = db.ref("Registration/" + userId1 + "/accType");
-        refDB.on("value", function(snapshot) {
-            var userData = snapshot.val();
-            if(userData == "driver")
-                window.location.href = '/dashboardD';
-            else
-                window.location.href = '/dashboardO';
-        });
+        if(userData == "driver")
+            window.location.href = '/dashboardD';
+        else
+            window.location.href = '/dashboardO';
 }
 
 
