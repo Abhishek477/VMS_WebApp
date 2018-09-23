@@ -36,6 +36,7 @@ function gotOne(data){
     objectRec = data.val();
     document.getElementById("userName").innerHTML = objectRec.FName + " " + objectRec.MName + " " + objectRec.LName;
     document.getElementById("userName").style.visibility = "visible";
+    document.getElementById("tktNo").innerHTML = "FINE TICKET #" + objectRec.TktNo;
     autoType(".type-js",200);
     if(userData == "driver" && document.getElementById("headLabel").innerText === "DASHBOARD")
         displayTable();
@@ -146,6 +147,65 @@ function displayHistoryTableO(){
 }
 
 
+function acceptFine(){
+    var FName = document.getElementById("FName").value;
+    var DLNo = document.getElementById("DLNo").value;
+    var VRNo = document.getElementById("VRNo").value;
+    var fineVal = document.getElementById("fineVal").value;
+    var fineReason = document.getElementById("fineReason").value;
+    var fineLoc = document.getElementById("fineLoc").value;
+    var fineDate = document.getElementById("fineDate").value;
+
+    if(DLNo == "" || VRNo == "" || fineVal == "" || FName == "" || fineReason == "" || fineLoc == "" || fineDate == ""){
+        window.alert("Empty fields!");
+        window.location.reload();
+        return;
+    }
+
+    var ticketObj = {
+        FName : FName,
+        DLNo : DLNo,
+        VRNo : VRNo,
+        fineVal : fineVal,
+        fineReason : fineReason,
+        fineLoc : fineLoc,
+        fineDate : fineDate
+    };
+
+
+    var ref = db.ref("Registration/" + usrID + "/Tickets/" + objectRec.TktNo);
+    ref.set(ticketObj)
+    .then(function() {
+        console.log("Fine Ticket successfully written!");
+    })
+    .catch(function(error) {
+        console.error("Error writing Fine Ticket : ", error);
+    });
+
+    var ref = db.ref("Registration/" + usrID);
+    ref.update({"TktNo" : objectRec.TktNo + 1});
+
+    window.alert("Fine Ticket registered! An Email has been sent to Driver.");
+    window.location.href = '/mailing';
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function gotoDashboard(){
         if(userData == "driver")
@@ -153,11 +213,6 @@ function gotoDashboard(){
         else
             window.location.href = '/dashboardO';
 }
-
-
-
-
-
 
 function logoutStuff(){
     localStorage.removeItem( 'objectToPass' );

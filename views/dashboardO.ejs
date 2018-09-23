@@ -23,13 +23,7 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assetsPL/scss/typingText.scss" rel="stylesheet" />
   <link href="../assetsPL/css/preloader.css" rel="stylesheet" />
-
-
-
   <link href="../assetsPL/css/datepicker.min.css" rel="stylesheet" type="text/css">
-
-
-
 </head>
 
 <body class="">
@@ -169,7 +163,7 @@
           <div class="card card-login">
             <form class="form" method="" action="">
               <div class="card-header card-header-primary text-center">
-                <h4 class="card-title">FINE TICKET</h4>
+                <h4 class="card-title" id="tktNo">FINE TICKET</h4>
               </div>
               <p class="description text-center">Fill in the details</p>
               <div class="card-body">
@@ -216,7 +210,7 @@
                             <i class="material-icons">attach_money</i>
                           </span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Fine Amount" id="fineVal">
+                        <input type="text" class="form-control" placeholder="Fine Amount (INR)" id="fineVal">
                       </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 col-md-6 ml-auto mr-auto">
@@ -250,14 +244,14 @@
                             <i class="material-icons">calendar_today</i>
                           </span>
                         </div>
-                        <input type='text' class='form-control datepicker-here' data-timepicker="true" placeholder="Pick Date & Time" data-language='en' />
+                        <input type='text' class='form-control datepicker-here' data-timepicker="true" placeholder="Pick Date & Time" data-language='en' id="fineDate" />
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="footer text-center">
-                <a onclick="anyFunction()" class="btn btn-danger" style="color: white">SUBMIT</a>
+                <a onclick="acceptFine()" class="btn btn-danger" style="color: white">SUBMIT</a>
               </div>
             </form>
           </div>
@@ -319,17 +313,9 @@
   <script src="../assetsPL/js/now-ui-dashboard.min.js?v=1.1.0" type="text/javascript"></script>
   <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assetsPL/demo/demo.js"></script>
-
-
-
-
   <script src="../assetsPL/js/plugins/datepicker.min.js"></script>
-
   <!-- Include English language -->
   <script src="../assetsPL/js/plugins/datepicker.en.js"></script>
-
-
-
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assetsPL/js/demos.js

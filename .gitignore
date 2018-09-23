@@ -4,3 +4,4 @@ public/firebaseConfig.js
 sendgridKey.txt
 node_modules
 models
+sendgrid.env

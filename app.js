@@ -20,7 +20,7 @@ var profilePageRouter = require('./routes/profile-page');
 var tablesRouter = require('./routes/tables');
 var userRouter = require('./routes/user');
 var regPageRouter = require('./routes/reg-form');
-// var nodeMail = require('./public/nodemailer/sendGrid');
+var nodeMail = require('./public/nodemailer/sendGrid');
 
 //DB config
 // require('./config/firebaseConfig');
@@ -58,6 +58,12 @@ app.get("/", (req,res) => {
   console.log("\nClient IP Address : " + ip + "\n");
   res.render("index");
 });
+app.get("/mailing", (req,res) => {
+  nodeMail.sendMail();
+  console.log("Mailed!");
+  res.render('mailing');
+});
+
 
 
 //Body parser
