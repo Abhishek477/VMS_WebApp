@@ -23,6 +23,13 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assetsPL/scss/typingText.scss" rel="stylesheet" />
   <link href="../assetsPL/css/preloader.css" rel="stylesheet" />
+
+
+
+  <link href="../assetsPL/css/datepicker.min.css" rel="stylesheet" type="text/css">
+
+
+
 </head>
 
 <body class="">
@@ -232,11 +239,18 @@
                         <input type="text" class="form-control" placeholder="Fine Location" id="fineLoc">
                       </div>
                     </div>
-                    <div class="container">
-                      <div class="row">
-                        <div class="col-md-6">
-                          
+                  </div>
+                </div>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-textx">
+                            <i class="material-icons">calendar_today</i>
+                          </span>
                         </div>
+                        <input type='text' class='form-control datepicker-here' data-timepicker="true" placeholder="Pick Date & Time" data-language='en' />
                       </div>
                     </div>
                   </div>
@@ -249,7 +263,6 @@
           </div>
         </div>
       </div>
-
 
       <footer class="footer">
         <div class="container-fluid">
@@ -306,6 +319,17 @@
   <script src="../assetsPL/js/now-ui-dashboard.min.js?v=1.1.0" type="text/javascript"></script>
   <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assetsPL/demo/demo.js"></script>
+
+
+
+
+  <script src="../assetsPL/js/plugins/datepicker.min.js"></script>
+
+  <!-- Include English language -->
+  <script src="../assetsPL/js/plugins/datepicker.en.js"></script>
+
+
+
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assetsPL/js/demos.js
