@@ -57,6 +57,10 @@ function dataStore(){
   .catch(function(error) {
       console.error("Error writing document: ", error);
   });
+  if(accType == "official"){
+    var ref = db.ref("Registration/" + window.btoa(email));
+    ref.update({TktNo : 1});
+  }
   window.alert("You are registered. Click OK to Login.");
   window.location.href='./login-page';
 }

@@ -26,7 +26,8 @@ function fetch(){
     ref.update({
         Category : "Helmet",
         Place : "Station",
-        Amount : 100
+        Amount : 100,
+        Date : "01-JAN"
     });
     */
     
@@ -86,7 +87,7 @@ function displayTable(){
     
     refDB.on("value", function(snapshot) {
         var chartData = snapshot.val();
-        tableCnt += "<tr><td>" + keys[j] + "</td><td>" + chartData.date + "</td><td>" + chartData.Category + "</td><td>" + chartData.Place + "</td><td class='text-right'>&#8377 " + chartData.Amount + "</td></tr>";
+        tableCnt += "<tr><td>" + keys[j] + "</td><td>" + chartData.Date + "</td><td>" + chartData.Category + "</td><td>" + chartData.Place + "</td><td class='text-right'>&#8377 " + chartData.Amount + "</td></tr>";
     });
     }
     var tBody = document.getElementById("tableBody")
@@ -128,7 +129,7 @@ function displayHistoryTableD(){
                         refDB = db.ref("Registration/" + userId1 + "/Fine/" + keys[i] + "/" + keys2[tt] + "/" + keys3[k]);
                         refDB.on("value", function(snapshot) {
                             var chartData = snapshot.val();
-                            tableCnt += "<tr><td>" + keys3[k] + "</td><td>" + chartData.date + "-" + keys[i].substring(3) + "</td><td>" + chartData.Category + "</td><td>" + chartData.Place + "</td><td class='text-right'>&#8377 " + chartData.Amount + "</td></tr>";
+                            tableCnt += "<tr><td>" + keys3[k] + "</td><td>" + chartData.Date + "-" + keys[i].substring(3) + "</td><td>" + chartData.Category + "</td><td>" + chartData.Place + "</td><td class='text-right'>&#8377 " + chartData.Amount + "</td></tr>";
                         });
                     }
                 });
@@ -210,7 +211,7 @@ function acceptFine(){
             window.alert("Driver not registered in Database!");
         else{
             // window.alert("Found : " +toMail.Email);
-
+            
             var finalMail = {
                 from: '"V M S" <noreply@v-m-s-52555.firebaseapp.com>',
                 to: toMail.Email,
@@ -249,6 +250,16 @@ function acceptFine(){
     var ref = db.ref("Registration/" + usrID);
     ref.update({"TktNo" : objectRec.TktNo + 1});
 
+    /*
+    var fineObj = {
+        date : fineDate,
+        Category : fineReason,
+        Place : fineLoc,
+        Amount : fineVal
+    };
+    var ref = db.ref("Registration/" + keys1[found] + "/Fines");
+    ref.update(fineObj);
+    */
 
     window.alert("Fine Ticket registered! An Email has been sent to Driver.");
     window.location.href = '/mailing';
