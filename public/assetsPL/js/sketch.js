@@ -36,7 +36,8 @@ function gotOne(data){
     objectRec = data.val();
     document.getElementById("userName").innerHTML = objectRec.FName + " " + objectRec.MName + " " + objectRec.LName;
     document.getElementById("userName").style.visibility = "visible";
-    document.getElementById("tktNo").innerHTML = "FINE TICKET #" + objectRec.TktNo;
+    if(document.getElementById('headLabel').innerText == 'DASHBOARD')
+        document.getElementById("tktNo").innerHTML = "FINE TICKET #" + objectRec.TktNo;
     autoType(".type-js",200);
     if(userData == "driver" && document.getElementById("headLabel").innerText === "DASHBOARD")
         displayTable();
@@ -135,13 +136,29 @@ function displayHistoryTableD(){
         });
     }
     document.getElementById("historyTable").innerHTML = tableCnt;
+    var tHead = '<th>Fine ID</th><th>Date</th><th>Category</th><th>Place</th><th class="text-right">Amount</th>';
+    document.getElementById("tHead").innerHTML = tHead;
     var preloader = $('.spinner-wrapper');
     preloader.fadeOut(500);
 }
 
 
 function displayHistoryTableO(){
-    console.log("Official's History displayed!");
+    var tableCnt = "", tHead = '<th>Ticket ID</th><th>Driver Name</th><th>VRNo</th><th>DLNo</th><th>Reason</th><th>Location</th><th>Time</th><th class="text-right">Amount</th>';
+    document.getElementById("tHead").innerHTML = tHead;
+    refDB = db.ref("Registration/" + usrID + "/Tickets/");
+    refDB.on("value", function(snapshot) {
+        var chartData = snapshot.val();
+        keys3 = Object.keys(chartData);
+        for(k = keys3.length - 1; k >= 0; k--){
+            refDB = db.ref("Registration/" + usrID + "/Tickets/" + keys3[k]);
+            refDB.on("value", function(snapshot) {
+                var chartData = snapshot.val();
+                tableCnt += "<tr><td>" + keys3[k] + "</td><td>" + chartData.FName + "</td><td>" + chartData.VRNo + "</td><td>" + chartData.DLNo + "</td><td>" + chartData.fineReason + "</td><td>" + chartData.fineLoc + "</td><td>" + chartData.fineDate + "</td><td class='text-right'>&#8377 " + chartData.fineVal + "</td></tr>";
+            });
+        }
+    });
+    document.getElementById("historyTable").innerHTML = tableCnt;
     var preloader = $('.spinner-wrapper');
     preloader.fadeOut(500);
 }
@@ -171,6 +188,53 @@ function acceptFine(){
         fineLoc : fineLoc,
         fineDate : fineDate
     };
+    
+    var toMail;
+    var found = -1;
+    var refDB = db.ref("Registration");
+    refDB.on("value", function(snapshot) {
+        chartData = snapshot.val();
+        var keys1 = Object.keys(chartData);
+        for(var i = 0; i < keys1.length; i++){
+            if(found != -1)    break;
+            refDB = db.ref("Registration/" + keys1[i]);
+            refDB.on("value", function(snapshot) {
+                chartData = snapshot.val();
+                if(chartData.VRNo == ticketObj.VRNo){
+                    found = i;
+                    toMail = chartData;
+                }
+            });
+        }
+        if(found == -1)
+            window.alert("Driver not registered in Database!");
+        else{
+            // window.alert("Found : " +toMail.Email);
+
+            var finalMail = {
+                from: '"V M S" <noreply@v-m-s-52555.firebaseapp.com>',
+                to: toMail.Email,
+                subject: 'Fine Ticket issued | City Traffic Police',
+                html:   '<p>Hello <b>' + toMail.FName + ' ' + toMail.LName + '</b>,</p>' +
+                        '<p>You have been fined with Rs. ' + fineVal + ' for ' + fineReason +
+                        ' at ' + fineLoc + '.</p>' +
+                        '<p>Following are the details of the driver :</p>' +
+                        '<p>Name : ' + FName + '</p>' +
+                        '<p>Driving Licence Number : ' + DLNo + '</p>' +
+                        '<p>Vehicle Registration Number : ' + VRNo + '</p>' +
+                        '<p>Date & Time : '  + fineDate + '</p><p></p>' +
+                        '<p>Thank You!</p>'
+            };
+            var ref = db.ref("Registration/mailService");
+            ref.set(finalMail).then(function() {
+                console.log("Fine Mail successfully written!");
+            })
+            .catch(function(error) {
+                console.error("Error writing Mail Ticket : ", error);
+            });
+        }
+    });
+
 
 
     var ref = db.ref("Registration/" + usrID + "/Tickets/" + objectRec.TktNo);
@@ -185,21 +249,11 @@ function acceptFine(){
     var ref = db.ref("Registration/" + usrID);
     ref.update({"TktNo" : objectRec.TktNo + 1});
 
+
     window.alert("Fine Ticket registered! An Email has been sent to Driver.");
     window.location.href = '/mailing';
+    // window.location.reload();
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -216,6 +270,8 @@ function gotoDashboard(){
 
 function logoutStuff(){
     localStorage.removeItem( 'objectToPass' );
+    localStorage.removeItem( 'finedDriver' );
+    localStorage.removeItem( 'ticketDetails' );
     window.location.href = '/index';
 }
 
