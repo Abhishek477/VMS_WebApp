@@ -23,12 +23,86 @@ function fetch(){
     ref.on("value", gotOne, errData);
 
     /*
-    ref.update({
-        Category : "Helmet",
-        Place : "Station",
-        Amount : 100,
-        Date : "01-JAN"
-    });
+    var ref = db.ref("Registration/dXNlckBleGFtcGxlLmNvbQ==/Fine/");
+    ref.update({"y2018" : {
+        "APR" : [ null, {
+          "Amount" : 0,
+          "Category" : "No Fine",
+          "Date" : "No Fine in APR",
+          "Place" : "No Fine"
+        } ],
+        "AUG" : [ null, {
+          "Amount" : 1000,
+          "Category" : "No Parking",
+          "Date" : "15-AUG",
+          "Place" : "Parade Road"
+        } ],
+        "DEC" : [ null, {
+          "Amount" : 650,
+          "Category" : "Helmet",
+          "Date" : "09-DEC",
+          "Place" : "Market"
+        } ],
+        "FEB" : [ null, {
+          "Amount" : 100,
+          "Category" : "Speeding",
+          "Date" : "18-FEB",
+          "Place" : "Highway"
+        } ],
+        "JAN" : [ null, {
+          "Amount" : 500,
+          "Category" : "Helmet",
+          "Date" : "12-JAN",
+          "Place" : "Station"
+        } ],
+        "JUL" : [ null, {
+          "Amount" : 250,
+          "Category" : "Helmet",
+          "Date" : "10-JUL",
+          "Place" : "Company area"
+        } ],
+        "JUN" : [ null, {
+          "Amount" : 100,
+          "Category" : "No Entry",
+          "Date" : "01-JUN",
+          "Place" : "Market"
+        } ],
+        "MAR" : [ null, {
+          "Amount" : 900,
+          "Category" : "Signal",
+          "Date" : "14-MAR",
+          "Place" : "4 Way"
+        } ],
+        "MAY" : [ null, {
+          "Amount" : 1500,
+          "Category" : "No Parking",
+          "Date" : "05-MAY",
+          "Place" : "City Mall"
+        } ],
+        "NOV" : [ null, {
+          "Amount" : 100,
+          "Category" : "Speeding",
+          "Date" : "14-NOV",
+          "Place" : "School"
+        } ],
+        "OCT" : [ null, {
+          "Amount" : 700,
+          "Category" : "Speeding",
+          "Date" : "02-OCT",
+          "Place" : "Expressway"
+        } ],
+        "SEP" : [ null, {
+          "Amount" : 500,
+          "Category" : "Signal Break",
+          "Date" : "05-SEP",
+          "Place" : "Market"
+        }, {
+          "Amount" : 100,
+          "Category" : "No Parking",
+          "Date" : "10-SEP",
+          "Place" : "Park"
+        } ]
+      }});
     */
     
 }
@@ -251,7 +325,7 @@ function acceptFine(){
         }
     });
     if(isMailed == 0){
-        window.alert("Finding Driver in database.....!");
+        window.alert("Finding Driver in database.....");
         window.location.reload();
     }
     // window.location.reload();
