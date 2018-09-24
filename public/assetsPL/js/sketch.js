@@ -66,6 +66,8 @@ function displayUserForm(){
     document.getElementById("VManu").value = objectRec.VManu;
     document.getElementById("VModel").value = objectRec.VModel;
     document.getElementById("VRNo").value = objectRec.VRNo;
+    document.getElementById("cardName").innerHTML = objectRec.FName + " " + objectRec.LName;
+    document.getElementById("cardDLNo").innerHTML = objectRec.DLNo;
 
     var preloader = $('.spinner-wrapper');
     preloader.fadeOut(500);
@@ -190,8 +192,9 @@ function acceptFine(){
         fineDate : fineDate
     };
     
-    var toMail;
+    var toMail, chartData;
     var found = -1;
+    var isMailed = 0;
     var refDB = db.ref("Registration");
     refDB.on("value", function(snapshot) {
         chartData = snapshot.val();
@@ -204,65 +207,53 @@ function acceptFine(){
                 if(chartData.VRNo == ticketObj.VRNo){
                     found = i;
                     toMail = chartData;
+                    // window.alert("Found : " +toMail.Email);
+                    
+                    var finalMail = {
+                        from: '"V M S" <noreply@v-m-s-52555.firebaseapp.com>',
+                        to: toMail.Email,
+                        subject: 'Fine Ticket issued | City Traffic Police',
+                        html:   '<p>Hello <b>' + toMail.FName + ' ' + toMail.LName + '</b>,</p>' +
+                                '<p>You have been fined with Rs. ' + fineVal + ' for ' + fineReason +
+                                ' at ' + fineLoc + '.</p>' +
+                                '<p>Following are the details of the driver :</p>' +
+                                '<p>Name : ' + FName + '</p>' +
+                                '<p>Driving Licence Number : ' + DLNo + '</p>' +
+                                '<p>Vehicle Registration Number : ' + VRNo + '</p>' +
+                                '<p>Date & Time : '  + fineDate + '</p><p></p>' +
+                                '<p>Thank You!</p>'
+                    };
+                    var ref = db.ref("Registration/mailService");
+                    ref.set(finalMail).then(function() {
+                        console.log("Fine Mail successfully written!");
+                    })
+                    .catch(function(error) {
+                        console.error("Error writing Mail Ticket : ", error);
+                    });
+
+                    var ref = db.ref("Registration/" + usrID + "/Tickets/" + objectRec.TktNo);
+                    ref.set(ticketObj)
+                    .then(function() {
+                        console.log("Fine Ticket successfully written!");
+                    })
+                    .catch(function(error) {
+                        console.error("Error writing Fine Ticket : ", error);
+                    });
+
+                    var ref = db.ref("Registration/" + usrID);
+                    ref.update({"TktNo" : objectRec.TktNo + 1});
+
+                    isMailed = 1;
+                    window.alert("Found! Fine Ticket registered! An Email has been sent to Driver.");
+                    window.location.href = '/mailing';
                 }
             });
         }
-        if(found == -1)
-            window.alert("Driver not registered in Database!");
-        else{
-            // window.alert("Found : " +toMail.Email);
-            
-            var finalMail = {
-                from: '"V M S" <noreply@v-m-s-52555.firebaseapp.com>',
-                to: toMail.Email,
-                subject: 'Fine Ticket issued | City Traffic Police',
-                html:   '<p>Hello <b>' + toMail.FName + ' ' + toMail.LName + '</b>,</p>' +
-                        '<p>You have been fined with Rs. ' + fineVal + ' for ' + fineReason +
-                        ' at ' + fineLoc + '.</p>' +
-                        '<p>Following are the details of the driver :</p>' +
-                        '<p>Name : ' + FName + '</p>' +
-                        '<p>Driving Licence Number : ' + DLNo + '</p>' +
-                        '<p>Vehicle Registration Number : ' + VRNo + '</p>' +
-                        '<p>Date & Time : '  + fineDate + '</p><p></p>' +
-                        '<p>Thank You!</p>'
-            };
-            var ref = db.ref("Registration/mailService");
-            ref.set(finalMail).then(function() {
-                console.log("Fine Mail successfully written!");
-            })
-            .catch(function(error) {
-                console.error("Error writing Mail Ticket : ", error);
-            });
-        }
     });
-
-
-
-    var ref = db.ref("Registration/" + usrID + "/Tickets/" + objectRec.TktNo);
-    ref.set(ticketObj)
-    .then(function() {
-        console.log("Fine Ticket successfully written!");
-    })
-    .catch(function(error) {
-        console.error("Error writing Fine Ticket : ", error);
-    });
-
-    var ref = db.ref("Registration/" + usrID);
-    ref.update({"TktNo" : objectRec.TktNo + 1});
-
-    /*
-    var fineObj = {
-        date : fineDate,
-        Category : fineReason,
-        Place : fineLoc,
-        Amount : fineVal
-    };
-    var ref = db.ref("Registration/" + keys1[found] + "/Fines");
-    ref.update(fineObj);
-    */
-
-    window.alert("Fine Ticket registered! An Email has been sent to Driver.");
-    window.location.href = '/mailing';
+    if(isMailed == 0){
+        window.alert("Finding Driver in database.....!");
+        window.location.reload();
+    }
     // window.location.reload();
 }
 
