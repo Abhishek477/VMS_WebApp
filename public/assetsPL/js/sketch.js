@@ -19,11 +19,12 @@ function fetch(){
 
     var userId = localStorage['objectToPass'];
     // localStorage.removeItem( 'objectToPass' );
+    
     var ref = db.ref("Registration/" + userId);
     ref.on("value", gotOne, errData);
 
     /*
-    var ref = db.ref("Registration/dXNlckBleGFtcGxlLmNvbQ==/Fine/");
+    var ref = db.ref("Registration/c2luaGFyaW5pMTBAZ21haWwuY29t/Fine/");
     ref.update({"y2018" : {
         "APR" : [ null, {
           "Amount" : 0,
@@ -149,7 +150,7 @@ function displayUserForm(){
 
 
 function displayTable(){
-    var mnt = "SEP";
+    var mnt = "OCT";
     var keys,tableCnt = "";
     var userId1 = localStorage['objectToPass'];
 
@@ -191,7 +192,7 @@ function displayHistoryTableD(){
             keys2 = Object.keys(chartData);
             var lmt = 11;
             if(keys[i] == "y2018")
-                lmt = 8;
+                lmt = 9;
             else
                 lmt = 0;                    //Remove this else when "y2017" has all months defined in Firebase
             for(j = lmt; j >= 0; j--){
