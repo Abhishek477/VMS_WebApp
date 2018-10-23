@@ -1,6 +1,6 @@
 console.log(firebase);
 var db = firebase.database();
-var LoginEmail,LoginPassword;
+var LoginVR,LoginPassword;
 
 function dataStore(){
   var FName     =  document.getElementById('FName').value.trim();
@@ -49,7 +49,7 @@ function dataStore(){
     Password  : hash,
     accType   : accType
   };
-  var ref = db.ref("Registration/" + window.btoa(email));
+  var ref = db.ref("Registration/" + window.btoa(VRNo));
   ref.set(user)
   .then(function() {
     console.log("Document successfully written!");
@@ -58,7 +58,7 @@ function dataStore(){
       console.error("Error writing document: ", error);
   });
   if(accType == "official"){
-    var ref = db.ref("Registration/" + window.btoa(email));
+    var ref = db.ref("Registration/" + window.btoa(VRNo));
     ref.update({TktNo : 1});
   }
   window.alert("You are registered. Click OK to Login.");
@@ -66,7 +66,7 @@ function dataStore(){
 }
 
 function retrieveData(){
-  LoginEmail     =  document.getElementById('LoginEmail').value;
+  LoginVR     =  document.getElementById('LoginVR').value;
   LoginPassword  =  document.getElementById('LoginPassword').value;
 
   var ref = db.ref("Registration");
@@ -79,12 +79,12 @@ function getData(data){
   console.log(keys);
   var tmp = 0;
   for(var i = 0; i < keys.length; i++){
-    if(keys[i] == window.btoa(LoginEmail)){
+    if(keys[i] == window.btoa(LoginVR)){
       if(window.btoa(LoginPassword) != userCredentials[keys[i]].Password)
         invalidCombo();
       else{
         console.log("Login Successful!");
-        localStorage.setItem( 'objectToPass', window.btoa(LoginEmail));
+        localStorage.setItem( 'objectToPass', window.btoa(LoginVR));
         if(userCredentials[keys[i]].accType == "driver")
           window.location.href='./dashboardD';
         else
