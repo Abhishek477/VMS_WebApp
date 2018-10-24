@@ -112,9 +112,12 @@ function gotOne(data){
     objectRec = data.val();
     document.getElementById("userName").innerHTML = objectRec.FName + " " + objectRec.MName + " " + objectRec.LName;
     document.getElementById("userName").style.visibility = "visible";
-    if(document.getElementById('headLabel').innerText == 'DASHBOARD')
+    if(document.getElementById('carSelector'))
+        document.getElementById('carSelector').innerHTML = "<i class='now-ui-icons transportation_bus-front-12'></i>VR NO. : " + objectRec.VRNo;
+    if(document.getElementById('headLabel').innerText == "DASHBOARD")
         document.getElementById("tktNo").innerHTML = "FINE TICKET #" + objectRec.TktNo;
     autoType(".type-js",200);
+    populateCarList();
     if(userData == "driver" && document.getElementById("headLabel").innerText === "DASHBOARD")
         displayTable();
     if(document.getElementById("headLabel").innerText === "HISTORY")
@@ -156,20 +159,64 @@ function displayTable(){
 
     var refDB = db.ref("Registration/" + userId1 + "/Fine/y2018/" + mnt);
     refDB.on("value", function(snapshot) {
-    var chartData = snapshot.val();
-    keys = Object.keys(chartData);
+        var chartData = snapshot.val();
+        keys = Object.keys(chartData);
+        // console.log(keys);
     });
     for(var j = 0; j < keys.length; j++){
-    refDB = db.ref("Registration/" + userId1 + "/Fine/y2018/" + mnt + "/" + keys[j]);
-    
+        refDB = db.ref("Registration/" + userId1 + "/Fine/y2018/" + mnt + "/" + keys[j]);
+        
+        refDB.on("value", function(snapshot) {
+            var chartData = snapshot.val();
+            tableCnt += "<tr><td>" + keys[j] + "</td><td>" + chartData.Date + "</td><td>" + chartData.Category + "</td><td>" + chartData.Place + "</td><td class='text-right'>&#8377 " + chartData.Amount + "</td></tr>";
+        });
+    }
+    var tBody = document.getElementById("tableBody");
+    if(tBody)   tBody.innerHTML = tableCnt;
+}
+
+function populateCarList(){
+    var keys,uEmail,tableCnt = "";
+    var userId1 = localStorage['objectToPass'];
+    var refDB = db.ref("Registration/" + userId1);
     refDB.on("value", function(snapshot) {
         var chartData = snapshot.val();
-        tableCnt += "<tr><td>" + keys[j] + "</td><td>" + chartData.Date + "</td><td>" + chartData.Category + "</td><td>" + chartData.Place + "</td><td class='text-right'>&#8377 " + chartData.Amount + "</td></tr>";
+        uEmail = chartData.Email;
     });
-    }
-    var tBody = document.getElementById("tableBody")
-    if(tBody)   tBody.innerHTML = tableCnt;
-  }
+
+    var refDB = db.ref("Registration");
+    refDB.on("value", function(snapshot) {
+        var chartData = snapshot.val();
+        keys = Object.keys(chartData);
+        // console.log(keys);
+        for(var j = 0; j < keys.length; j++){
+            if(keys[j] != "mailService"){
+                refDB = db.ref("Registration/" + keys[j]);
+                
+                refDB.on("value", function(snapshot) {
+                    var chartData = snapshot.val();
+                    if(chartData.Email == uEmail){
+                        tableCnt += "<a class='dropdown-item' href='#' onclick='switchCar(`" + keys[j] + "`)'># " + chartData.VRNo + "</a>\n";
+                    }
+                });
+            }
+        }
+        var tBody = document.getElementById("carList");
+        if(tBody)   tBody.innerHTML = tableCnt;
+    });
+}
+
+function switchCar(car){
+    console.log(car + " clicked!");
+    localStorage.removeItem( 'objectToPass' );
+    localStorage.setItem( 'objectToPass', car);
+    window.location.reload();
+}
+
+
+
+
+
 
 
 
