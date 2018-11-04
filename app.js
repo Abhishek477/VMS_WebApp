@@ -19,6 +19,8 @@ var notificationsRouter = require('./routes/notifications');
 var profilePageRouter = require('./routes/profile-page');
 var tablesRouter = require('./routes/tables');
 var userRouter = require('./routes/user');
+var searchRouter = require('./routes/search');
+var searchResultRouter = require('./routes/searchResult');
 var regPageRouter = require('./routes/reg-form');
 var nodeMail = require('./public/nodemailer/sendGrid');
 
@@ -50,6 +52,8 @@ app.use('/notifications', notificationsRouter);
 app.use('/profile-page', profilePageRouter);
 app.use('/tables', tablesRouter);
 app.use('/user', userRouter);
+app.use('/search', searchRouter);
+app.use('/searchResult', searchResultRouter);
 app.use('/reg-form', regPageRouter);
 
 app.get("/", (req,res) => {

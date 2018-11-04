@@ -126,7 +126,10 @@ function gotOne(data){
         else
             displayHistoryTableO();
     if(document.getElementById("headLabel").innerText === "PROFILE")
-        displayUserForm();
+        displayUserForm(objectRec, 0);
+    
+    var preloader = $('.spinner-wrapper');
+    preloader.fadeOut(500);
 }
 function errData(err){
     console.log(err);
@@ -134,18 +137,22 @@ function errData(err){
 
 
 
-function displayUserForm(){
-    document.getElementById("FName").value = objectRec.FName;
-    document.getElementById("LName").value = objectRec.LName;
-    document.getElementById("formDLNo").value = objectRec.DLNo;
-    document.getElementById("DOB").value = objectRec.DOB;
-    document.getElementById("Email").value = objectRec.Email;
-    document.getElementById("Phone").value = objectRec.Phone;
-    document.getElementById("VManu").value = objectRec.VManu;
-    document.getElementById("VModel").value = objectRec.VModel;
-    document.getElementById("VRNo").value = objectRec.VRNo;
-    document.getElementById("cardName").innerHTML = objectRec.FName + " " + objectRec.LName;
-    document.getElementById("cardDLNo").innerHTML = objectRec.DLNo;
+function displayUserForm(userObj, flg){
+    if(userObj.accType == "official")
+        document.getElementById("hideIfO").style.display = "none";
+    if(userObj.accType == "driver" && flg == 0)
+        document.getElementById("hideIfD").style.display = "none";
+    document.getElementById("FName").value = userObj.FName;
+    document.getElementById("LName").value = userObj.LName;
+    document.getElementById("formDLNo").value = userObj.DLNo;
+    document.getElementById("DOB").value = userObj.DOB;
+    document.getElementById("Email").value = userObj.Email;
+    document.getElementById("Phone").value = userObj.Phone;
+    document.getElementById("VManu").value = userObj.VManu;
+    document.getElementById("VModel").value = userObj.VModel;
+    document.getElementById("VRNo").value = userObj.VRNo;
+    document.getElementById("cardName").innerHTML = userObj.FName + " " + userObj.LName;
+    document.getElementById("cardDLNo").innerHTML = userObj.DLNo;
 
     var preloader = $('.spinner-wrapper');
     preloader.fadeOut(500);
@@ -213,7 +220,33 @@ function switchCar(car){
     window.location.reload();
 }
 
+function searchIT(){
 
+    var flag = 0;
+    var refDB = db.ref("Registration");
+    refDB.on("value", function(snapshot) {
+        var userr = snapshot.val();
+        var keys = Object.keys(userr);
+        // console.log(keys);
+        for(var j = 0; j < keys.length; j++){
+            refDB = db.ref("Registration/" + keys[j]);
+            refDB.on("value", function(snapshot) {
+                var userrData = snapshot.val();
+                if(userrData.VRNo == document.getElementById("searchVR").value){
+                    document.getElementById("showResult").style.display = "block";
+                    document.getElementById("searchCard").style.display = "none";
+                    displayUserForm(userrData, 1);
+                    window.alert("Found!");flag = 1;
+                    return;
+                }
+            });
+        }
+        if(flag == 0){
+            window.alert("Sorry, VR No. not found!");
+            window.location.reload();
+        }
+    });
+}
 
 
 
@@ -221,6 +254,8 @@ function switchCar(car){
 
 
 function displayHistoryTableD(){
+    if(document.getElementById("hideIfD"))
+        document.getElementById("hideIfD").style.display = "none";
     var i,j,k;
     var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
     var keys,keys2,keys3,tableCnt = "";
@@ -269,6 +304,7 @@ function displayHistoryTableD(){
 
 
 function displayHistoryTableO(){
+    document.getElementById("hideIfO").style.display = "none";
     var tableCnt = "", tHead = '<th>Ticket ID</th><th>Driver Name</th><th>VRNo</th><th>DLNo</th><th>Reason</th><th>Location</th><th>Time</th><th class="text-right">Amount</th>';
     document.getElementById("tHead").innerHTML = tHead;
     refDB = db.ref("Registration/" + usrID + "/Tickets/");
