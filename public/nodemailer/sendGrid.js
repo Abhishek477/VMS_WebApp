@@ -46,7 +46,7 @@ function sendMail(){
             secure: false,
             auth: {
                 user: 'apikey',
-                pass: process.env.SENDGRID_API_KEY
+                pass: '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'
             }
         });
 

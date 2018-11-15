@@ -12,7 +12,7 @@ const hostname = '127.0.0.1';/*192.168.43.249';*/
 /**
  * Get port from environment and store in Express.
  */
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '5000');
 app.set('port', port);
 
 /**
