@@ -9,7 +9,7 @@ const nodemailer = require('nodemailer');
 var requestIP = require('request-ip');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// var usersRouter = require('./routes/users');
 var loginPageRouter = require('./routes/login-page');
 var collectionRouter = require('./routes/collection');
 var dashboardDRouter = require('./routes/dashboardD');
@@ -42,7 +42,7 @@ app.use(requestIP.mw());
 
 // app.use('/', indexRouter);
 app.use('/index', indexRouter);
-app.use('/users', usersRouter);
+// app.use('/users', usersRouter);
 app.use('/login-page', loginPageRouter);
 app.use('/collection', collectionRouter);
 app.use('/dashboardD', dashboardDRouter);
