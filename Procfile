@@ -1,2 +1,1 @@
-web: source ./sendgrid.env
-web: npm run-script dev
+web: node ./bin/www.js
