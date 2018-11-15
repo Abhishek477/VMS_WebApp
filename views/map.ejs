@@ -59,33 +59,40 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a onclick="gotoDashboard()" href="#">
+            <a href="./dashboardO">
               <i class="now-ui-icons design_app"></i>
-              <p>Dashboard</p>
+              <p style="font-family: Montserrat; font-size: 0.9142em; text-transform: uppercase; cursor: pointer; font-weight: 400;">Dashboard</p>
             </a>
           </li>
           <li>
             <a href="./tables">
               <i class="now-ui-icons design_bullet-list-67"></i>
-              <p>History</p>
+              <p style="font-family: Montserrat; font-size: 0.9142em; text-transform: uppercase; cursor: pointer; font-weight: 400;">History</p>
             </a>
           </li>
-          <li>
+          <!-- <li>
             <a href="./notifications">
               <i class="now-ui-icons ui-1_bell-53"></i>
-              <p>Notifications</p>
+              <p style="font-family: Montserrat; font-size: 0.9142em; text-transform: uppercase; cursor: pointer; font-weight: 400;">Notifications</p>
             </a>
-          </li>
-          <li class="active ">
-            <a href="./map">
-              <i class="now-ui-icons location_map-big"></i>
-              <p>Maps</p>
-            </a>
-          </li>
+          </li> -->
           <li>
             <a href="./user">
               <i class="now-ui-icons users_single-02"></i>
-              <p>User Profile</p>
+              <p style="font-family: Montserrat; font-size: 0.9142em; text-transform: uppercase; cursor: pointer; font-weight: 400;">User Profile</p>
+            </a>
+          </li>
+          <hr />
+          <li id="hideIfD" class="active">
+            <a href="./search">
+              <i class="now-ui-icons ui-1_zoom-bold"></i>
+              <p style="font-family: Montserrat; font-size: 0.9142em; text-transform: uppercase; cursor: pointer; font-weight: 400;">Search</p>
+            </a>
+          </li>
+          <li id="hideIfD" class="active">
+            <a href="./map">
+              <i class="now-ui-icons location_pin"></i>
+              <p style="font-family: Montserrat; font-size: 0.9142em; text-transform: uppercase; cursor: pointer; font-weight: 400;">Hotspots</p>
             </a>
           </li>
         </ul>
@@ -103,7 +110,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" style="-webkit-user-select: none;" id="headLabel">Maps</a>
+            <a class="navbar-brand" style="-webkit-user-select: none;" id="headLabel">Hotspots</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -161,6 +168,57 @@
       <div class="content">
         <div class="row">
           <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Frequent Fined Locations</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary" id="tHead">
+                      <tr>
+                        <th>Rank</th>
+                        <th>Location</th>
+                        <th>Frequency(times fined)</th>
+                        <th class="text-center">View on Map</th>
+                      </tr>
+                    </thead>
+                    <tbody id="freqTable">
+                        <tr>
+                          <td>1</td>
+                          <td>Station Road</td>
+                          <td>24</td>
+                          <td class="text-center"><a onclick="viewMap(1)/*demo.initGoogleMaps(22.5839456, 88.3412181);*/" href="#map">View</a></td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>IIEST</td>
+                          <td>20</td>
+                          <td class="text-center"><a onclick="viewMap(2)/*demo.initGoogleMaps(22.555299, 88.307753);*/" href="#map">View</a></td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Avani Mall</td>
+                          <td>17</td>
+                          <td class="text-center"><a onclick="viewMap(3)/*demo.initGoogleMaps(22.5631671,88.3213589);*/" href="#map">View</a></td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <td>Quest Mall</td>
+                          <td>10</td>
+                          <td class="text-center"><a onclick="viewMap(4)/*demo.initGoogleMaps(22.539538, 88.3630423);*/" href="#map">View</a></td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
             <div class="card ">
               <div class="card-header ">
                 Google Maps
@@ -213,7 +271,7 @@
   <script src="../assetsPL/js/core/popper.min.js"></script>
   <script src="../assetsPL/js/core/bootstrap.min.js"></script>
   <script src="../assetsPL/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Google Maps Plugin    -->
+  <!--  Google Maps Plugin ( AIzaSyBd3PjUqq81lIOfBPYXrQGWwK5T4ystZjA)   -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBd3PjUqq81lIOfBPYXrQGWwK5T4ystZjA"></script>
   <!-- Chart JS -->
   <script src="../assetsPL/js/plugins/chartjs.min.js"></script>
@@ -227,7 +285,8 @@
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assetsPL/js/demos.js
-      demo.initGoogleMaps();
+      //demo.initGoogleMaps(22.555299, 88.307753);
+      viewMap(1);
       //Preloader
       $(window).on("load", function() {
       preloaderFadeOutTime = 500;

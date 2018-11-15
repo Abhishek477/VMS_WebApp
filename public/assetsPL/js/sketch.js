@@ -160,7 +160,7 @@ function displayUserForm(userObj, flg){
 
 
 function displayTable(){
-    var mnt = "OCT";
+    var mnt = "NOV";
     var keys,tableCnt = "";
     var userId1 = localStorage['objectToPass'];
 
@@ -253,6 +253,8 @@ function searchIT(){
 
 
 
+
+
 function displayHistoryTableD(){
     if(document.getElementById("hideIfD"))
         document.getElementById("hideIfD").style.display = "none";
@@ -274,7 +276,7 @@ function displayHistoryTableD(){
             keys2 = Object.keys(chartData);
             var lmt = 11;
             if(keys[i] == "y2018")
-                lmt = 9;
+                lmt = 10;
             else
                 lmt = 0;                    //Remove this else when "y2017" has all months defined in Firebase
             for(j = lmt; j >= 0; j--){

@@ -350,8 +350,8 @@ demo = {
     });
   },
 
-  initGoogleMaps: function() {
-    var myLatlng = new google.maps.LatLng(22.555299, 88.307753);
+  initGoogleMaps: function(lat, lng) {
+    var myLatlng = new google.maps.LatLng(lat, lng);//22.5631671,88.3213589);22.555299, 88.307753);
     var mapOptions = {
       zoom: 16,
       center: myLatlng,
@@ -505,3 +505,19 @@ demo = {
   }
 
 };
+
+
+
+function viewMap(choice){
+  switch(choice){
+    case 1 : document.getElementById("map").innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.884772305961!2d88.34071371458248!3d22.58341258517723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027795d8ab719b%3A0x45ef375a63fd05f3!2sHowrah!5e0!3m2!1sen!2sin!4v1542135703669" width="1001" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>';
+    break;
+    case 2 : document.getElementById("map").innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4381.77469520719!2d88.30537273851046!3d22.555954459525577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0279ca2ab768f5%3A0x292cc549d609ade5!2sIIEST+%2C+First+Gate!5e0!3m2!1sen!2sin!4v1542134953885" width="1001" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>';
+    break;
+    case 3 : document.getElementById("map").innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.4259468915425!2d88.32135891458206!3d22.56316708518762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a02782b4b85236b%3A0xf930670bfb37fe43!2sAvani+Riverside+Mall!5e0!3m2!1sen!2sin!4v1542135497083" width="1001" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>';
+    break;
+    case 4 : document.getElementById("map").innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3685.0569853930247!2d88.36304231458158!3d22.539537985199846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0276de2ae1de37%3A0x60f17500da0e68e9!2sQuest+Mall!5e0!3m2!1sen!2sin!4v1542135736494" width="1001" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>';
+    break;
+    default : console.log("Invalid choice!");
+  }
+}
