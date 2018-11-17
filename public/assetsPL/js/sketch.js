@@ -3,7 +3,7 @@ var db = firebase.database();
 var objectRec, userData;
 var usrID = localStorage['objectToPass'];
 refDB = db.ref("Registration/" + usrID + "/accType");
-refDB.on("value", function(snapshot) {
+refDB.once("value", function(snapshot) {
     userData = snapshot.val();
 });
 fetch();
@@ -140,8 +140,10 @@ function errData(err){
 function displayUserForm(userObj, flg){
     if(userObj.accType == "official")
         document.getElementById("hideIfO").style.display = "none";
-    if(userObj.accType == "driver" && flg == 0)
+    if(userObj.accType == "driver" && flg == 0){
         document.getElementById("hideIfD").style.display = "none";
+        document.getElementById("hideIfD1").style.display = "none";
+    }
     document.getElementById("FName").value = userObj.FName;
     document.getElementById("LName").value = userObj.LName;
     document.getElementById("formDLNo").value = userObj.DLNo;
@@ -165,7 +167,7 @@ function displayTable(){
     var userId1 = localStorage['objectToPass'];
 
     var refDB = db.ref("Registration/" + userId1 + "/Fine/y2018/" + mnt);
-    refDB.on("value", function(snapshot) {
+    refDB.once("value", function(snapshot) {
         var chartData = snapshot.val();
         keys = Object.keys(chartData);
         // console.log(keys);
@@ -173,7 +175,7 @@ function displayTable(){
     for(var j = 0; j < keys.length; j++){
         refDB = db.ref("Registration/" + userId1 + "/Fine/y2018/" + mnt + "/" + keys[j]);
         
-        refDB.on("value", function(snapshot) {
+        refDB.once("value", function(snapshot) {
             var chartData = snapshot.val();
             tableCnt += "<tr><td>" + keys[j] + "</td><td>" + chartData.Date + "</td><td>" + chartData.Category + "</td><td>" + chartData.Place + "</td><td class='text-right'>&#8377 " + chartData.Amount + "</td></tr>";
         });
@@ -186,7 +188,7 @@ function populateCarList(){
     var keys,uEmail,tableCnt = "";
     var userId1 = localStorage['objectToPass'];
     var refDB = db.ref("Registration/" + userId1);
-    refDB.on("value", function(snapshot) {
+    refDB.once("value", function(snapshot) {
         var chartData = snapshot.val();
         uEmail = chartData.Email;
     });
@@ -200,7 +202,7 @@ function populateCarList(){
             if(keys[j] != "mailService"){
                 refDB = db.ref("Registration/" + keys[j]);
                 
-                refDB.on("value", function(snapshot) {
+                refDB.once("value", function(snapshot) {
                     var chartData = snapshot.val();
                     if(chartData.Email == uEmail){
                         tableCnt += "<a class='dropdown-item' href='#' onclick='switchCar(`" + keys[j] + "`)'># " + chartData.VRNo + "</a>\n";
@@ -256,22 +258,24 @@ function searchIT(){
 
 
 function displayHistoryTableD(){
-    if(document.getElementById("hideIfD"))
+    if(document.getElementById("hideIfD")){
         document.getElementById("hideIfD").style.display = "none";
+        document.getElementById("hideIfD1").style.display = "none";
+    }
     var i,j,k;
     var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
     var keys,keys2,keys3,tableCnt = "";
     var userId1 = localStorage['objectToPass'];
 
     var refDB = db.ref("Registration/" + userId1 + "/Fine");
-    refDB.on("value", function(snapshot) {
+    refDB.once("value", function(snapshot) {
         var chartData = snapshot.val();
         keys = Object.keys(chartData);
         console.log(keys);
     });
     for(i = keys.length-1; i >= 0; i--){
         refDB = db.ref("Registration/" + userId1 + "/Fine/" + keys[i]);
-        refDB.on("value", function(snapshot) {
+        refDB.once("value", function(snapshot) {
             var chartData = snapshot.val();
             keys2 = Object.keys(chartData);
             var lmt = 11;
@@ -283,12 +287,12 @@ function displayHistoryTableD(){
                 var tt = 0;
                 while(tt < 12 && keys2[tt] != months[j]){tt++;}
                 refDB = db.ref("Registration/" + userId1 + "/Fine/" + keys[i] + "/" + keys2[tt]);
-                refDB.on("value", function(snapshot) {
+                refDB.once("value", function(snapshot) {
                     var chartData = snapshot.val();
                     keys3 = Object.keys(chartData);
                     for(k = keys3.length - 1; k >= 0; k--){
                         refDB = db.ref("Registration/" + userId1 + "/Fine/" + keys[i] + "/" + keys2[tt] + "/" + keys3[k]);
-                        refDB.on("value", function(snapshot) {
+                        refDB.once("value", function(snapshot) {
                             var chartData = snapshot.val();
                             tableCnt += "<tr><td>" + keys3[k] + "</td><td>" + chartData.Date + "-" + keys[i].substring(3) + "</td><td>" + chartData.Category + "</td><td>" + chartData.Place + "</td><td class='text-right'>&#8377 " + chartData.Amount + "</td></tr>";
                         });
@@ -310,12 +314,12 @@ function displayHistoryTableO(){
     var tableCnt = "", tHead = '<th>Ticket ID</th><th>Driver Name</th><th>VRNo</th><th>DLNo</th><th>Reason</th><th>Location</th><th>Time</th><th class="text-right">Amount</th>';
     document.getElementById("tHead").innerHTML = tHead;
     refDB = db.ref("Registration/" + usrID + "/Tickets/");
-    refDB.on("value", function(snapshot) {
+    refDB.once("value", function(snapshot) {
         var chartData = snapshot.val();
         keys3 = Object.keys(chartData);
         for(k = keys3.length - 1; k >= 0; k--){
             refDB = db.ref("Registration/" + usrID + "/Tickets/" + keys3[k]);
-            refDB.on("value", function(snapshot) {
+            refDB.once("value", function(snapshot) {
                 var chartData = snapshot.val();
                 tableCnt += "<tr><td>" + keys3[k] + "</td><td>" + chartData.FName + "</td><td>" + chartData.VRNo + "</td><td>" + chartData.DLNo + "</td><td>" + chartData.fineReason + "</td><td>" + chartData.fineLoc + "</td><td>" + chartData.fineDate + "</td><td class='text-right'>&#8377 " + chartData.fineVal + "</td></tr>";
             });
@@ -346,23 +350,23 @@ function acceptFine(){
         FName : FName,
         DLNo : DLNo,
         VRNo : VRNo,
-        fineVal : fineVal,
+        fineVal : parseInt(fineVal, 10),
         fineReason : fineReason,
         fineLoc : fineLoc,
-        fineDate : fineDate
+        fineDate : fineDate.toUpperCase()
     };
     
     var toMail, chartData;
     var found = -1;
     var isMailed = 0;
     var refDB = db.ref("Registration");
-    refDB.on("value", function(snapshot) {
+    refDB.once("value", function(snapshot) {
         chartData = snapshot.val();
         var keys1 = Object.keys(chartData);
         for(var i = 0; i < keys1.length; i++){
             if(found != -1)    break;
             refDB = db.ref("Registration/" + keys1[i]);
-            refDB.on("value", function(snapshot) {
+            refDB.once("value", function(snapshot) {
                 chartData = snapshot.val();
                 if(chartData.VRNo == ticketObj.VRNo){
                     found = i;
@@ -405,22 +409,42 @@ function acceptFine(){
 
                     isMailed = 1;
                     window.alert("Found! Fine Ticket registered! An Email has been sent to Driver.");
+
+                    //TODO
+                    var fineNo;
+                    refDB = db.ref("Registration/" + keys1[found] + "/Fine/y2018/NOV/");
+                    refDB.once("value", function(snapshot) {
+                        chartData = snapshot.val();
+                        var keys2 = Object.keys(chartData);
+                        // window.alert(keys2);
+                        fineNo = keys2.length + 1;
+                    });
+                    var driverFine = {
+                        Amount : parseInt(fineVal, 10),
+                        Category : fineReason,
+                        Date : fineDate.substring(4, 10).toUpperCase(),
+                        Place : fineLoc
+                    };
+                    // console.log(driverFine);
+                    var ref = db.ref("Registration/" + keys1[found] + "/Fine/y2018/NOV/" + fineNo);
+                    ref.set(driverFine)
+                    .then(function() {
+                        console.log("Fine Ticket successfully written to DRIVER!");
+                    })
+                    .catch(function(error) {
+                        console.error("Error writing Fine Ticket : ", error);
+                    });
                     window.location.href = '/mailing';
                 }
             });
         }
     });
     if(isMailed == 0){
-        window.alert("Finding Driver in database.....");
+        window.alert("Vechicle not registered in database!");
         window.location.reload();
     }
     // window.location.reload();
 }
-
-
-
-
-
 
 
 function gotoDashboard(){

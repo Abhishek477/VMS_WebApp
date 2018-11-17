@@ -70,7 +70,7 @@ function retrieveData(){
   LoginPassword  =  document.getElementById('LoginPassword').value;
 
   var ref = db.ref("Registration");
-  ref.on('value', getData, errData);
+  ref.once('value', getData, errData);
 }
 
 function getData(data){
