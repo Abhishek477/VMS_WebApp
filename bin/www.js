@@ -7,7 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('newbostontutorial:server');
 var http = require('http');
-// const hostname = '127.0.0.1';/*192.168.43.249';*/
+const hostname = '127.0.0.1';/*192.168.43.249';*/
 
 /**
  * Get port from environment and store in Express.
@@ -27,8 +27,8 @@ console.log("The server is now running..");
  */
 
 //server.listen(port);
-server.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}/`);
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
 });
 
 /*

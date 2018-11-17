@@ -1,8 +1,8 @@
 config
-# public/nodemailer/v-m-s-52555-firebase-adminsdk-m7vhc-54c2526726.json
-# public/firebaseConfig.js
+public/nodemailer/v-m-s-52555-firebase-adminsdk-m7vhc-54c2526726.json
+public/firebaseConfig.js
 sendgridKey.txt
 node_modules
-# models
+models
 sendgrid.env
-# public/v-m-s-52555-firebase-adminsdk-m7vhc-54c2526726.json
+public/v-m-s-52555-firebase-adminsdk-m7vhc-54c2526726.json
